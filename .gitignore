@@ -1,0 +1,26 @@
+# Secrets
+.env
+.env.*
+**/.env
+**/.env.*
+
+# Node
+node_modules/
+dist/
+site-dist/
+*.tsbuildinfo
+
+# Foundry
+contracts/cache/
+contracts/out/
+contracts/lib/
+contracts/_vendor/
+contracts/broadcast/*/31337/
+contracts/broadcast/**/dry-run/
+
+# OS / editor
+.DS_Store
+.cursor/
+.claude/
+.agents/
+.vercel/

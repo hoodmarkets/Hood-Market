@@ -1,0 +1,73 @@
+{
+  "chainId": 4663,
+  "explorer": "https://robinhoodchain.blockscout.com",
+  "verifiedAt": "2026-07-01",
+  "contracts": [
+    {
+      "name": "Liquid",
+      "role": "factory",
+      "address": "0x23e6a10ac78e9ad4c8397168d925f15aaf3fcbed",
+      "url": "https://robinhoodchain.blockscout.com/address/0x23e6a10ac78e9ad4c8397168d925f15aaf3fcbed"
+    },
+    {
+      "name": "HoodMarketsDeployer",
+      "role": "create2 helper",
+      "address": "0x61951b2ae75bd3acc40e1d2cb868158dcd1e1959",
+      "url": "https://robinhoodchain.blockscout.com/address/0x61951b2ae75bd3acc40e1d2cb868158dcd1e1959"
+    },
+    {
+      "name": "HoodMarketsFeeLocker",
+      "role": "fee locker",
+      "address": "0xaf31b891d629421872d1ad3fe102f49ffc12deaf",
+      "url": "https://robinhoodchain.blockscout.com/address/0xaf31b891d629421872d1ad3fe102f49ffc12deaf"
+    },
+    {
+      "name": "HoodMarketsPoolExtensionAllowlist",
+      "role": "extension allowlist",
+      "address": "0x99faa75044d5c86b792b09eaab837395cb569ade",
+      "url": "https://robinhoodchain.blockscout.com/address/0x99faa75044d5c86b792b09eaab837395cb569ade"
+    },
+    {
+      "name": "HoodMarketsHookDynamicFeeV2",
+      "role": "dynamic fee hook",
+      "address": "0xda3371a2b4d69ab01db02407663dccb0f173e8cc",
+      "url": "https://robinhoodchain.blockscout.com/address/0xda3371a2b4d69ab01db02407663dccb0f173e8cc"
+    },
+    {
+      "name": "HoodMarketsHookStaticFeeV2",
+      "role": "static fee hook",
+      "address": "0xdf58eaaf3b5eb054dc341b9df2b0a599b7b8a8cc",
+      "url": "https://robinhoodchain.blockscout.com/address/0xdf58eaaf3b5eb054dc341b9df2b0a599b7b8a8cc"
+    },
+    {
+      "name": "HoodMarketsUniv4EthDevBuy",
+      "role": "launch buy extension",
+      "address": "0x82701f7d64ebe6908ad24b25e86aa578a07b0065",
+      "url": "https://robinhoodchain.blockscout.com/address/0x82701f7d64ebe6908ad24b25e86aa578a07b0065"
+    },
+    {
+      "name": "HoodMarketsSniperAuctionV2",
+      "role": "MEV module",
+      "address": "0x33d25954a2f9115e11d9b8040b63e517ccfe96df",
+      "url": "https://robinhoodchain.blockscout.com/address/0x33d25954a2f9115e11d9b8040b63e517ccfe96df"
+    },
+    {
+      "name": "HoodMarketsMevDescendingFees",
+      "role": "MEV descending fees",
+      "address": "0x98959578fc29ca7410981fe0bec222e294090abe",
+      "url": "https://robinhoodchain.blockscout.com/address/0x98959578fc29ca7410981fe0bec222e294090abe"
+    },
+    {
+      "name": "HoodMarketsSniperUtilV2",
+      "role": "sniper util",
+      "address": "0x397be2d1fd36e3b1738ef6af6160457317af6ba6",
+      "url": "https://robinhoodchain.blockscout.com/address/0x397be2d1fd36e3b1738ef6af6160457317af6ba6"
+    },
+    {
+      "name": "HoodMarketsLpLockerFeeConversion",
+      "role": "LP locker",
+      "address": "0xa3daeee0b25e43f9f0c2c758ae38d35586b2ba24",
+      "url": "https://robinhoodchain.blockscout.com/address/0xa3daeee0b25e43f9f0c2c758ae38d35586b2ba24"
+    }
+  ]
+}

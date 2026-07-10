@@ -1,0 +1,73 @@
+{
+  "_comment": [
+    "Privy wallet policy — paste this in Privy Dashboard → Wallet infrastructure → Policies.",
+    "Attach it to the authorization key / key quorum used by PRIVY_WALLET_API_AUTHORIZATION_PRIVATE_KEY.",
+    "",
+    "What this enforces:",
+    "  • Base mainnet only (chain 8453)",
+    "  • Transactions must target known 0x / Odos routers — no arbitrary contract calls",
+    "  • No plain native ETH sends (calldata required)",
+    "  • USD notional spend cap per transaction (~$500 equiv — adjust as needed)",
+    "",
+    "Router addresses (Base mainnet):",
+    "  0x AllowanceHolder:  0x0000000000001ff3684f28c67538d4d072c22734",
+    "  Odos router v2:     0x19ceead7105607cd444f5ad10dd51356b950d29b",
+    "  Odos router (alt):  0x221a4c9e54baebd678ff1823e4fca2ac3685ca64",
+    "  Paraswap Augustus:  0x59c7c832e96d2568bea6db468c1aadcbbda08a52"
+  ],
+  "version": "1.0",
+  "name": "liquid-launcher-base-swaps",
+  "chain_type": "ethereum",
+  "rules": [
+    {
+      "name": "base-mainnet-only",
+      "description": "Restrict all transactions to Base mainnet (chain id 8453)",
+      "conditions": {
+        "chain_id": {
+          "not_in": ["1", "10", "42161", "137", "56", "43114", "7777777"]
+        }
+      },
+      "action": "deny"
+    },
+    {
+      "name": "approved-routers-only",
+      "description": "Only allow calls to known 0x / Odos routers on Base. Deny everything else.",
+      "conditions": {
+        "to": {
+          "not_in": [
+            "0x0000000000001ff3684f28c67538d4d072c22734",
+            "0x19ceead7105607cd444f5ad10dd51356b950d29b",
+            "0x221a4c9e54baebd678ff1823e4fca2ac3685ca64",
+            "0x59c7c832e96d2568bea6db468c1aadcbbda08a52"
+          ]
+        }
+      },
+      "action": "deny"
+    },
+    {
+      "name": "no-native-sends",
+      "description": "Block plain ETH transfers (no calldata). Swaps always have calldata.",
+      "conditions": {
+        "data": { "equals": "0x" },
+        "value": { "gt": "0" }
+      },
+      "action": "deny"
+    },
+    {
+      "name": "spend-cap-per-tx",
+      "description": "Cap the ETH value per transaction. ~0.15 ETH ≈ $500 at $3300/ETH — adjust to match BOT_SWAP_MAX_ETH.",
+      "conditions": {
+        "value": { "gt": "150000000000000000" }
+      },
+      "action": "deny"
+    }
+  ],
+  "default_action": "allow",
+  "_router_addresses_reference": {
+    "zerox_allowance_holder_base": "0x0000000000001ff3684f28c67538d4d072c22734",
+    "odos_router_v2_base_primary": "0x19ceead7105607cd444f5ad10dd51356b950d29b",
+    "odos_router_v2_base_alt": "0x221a4c9e54baebd678ff1823e4fca2ac3685ca64",
+    "paraswap_augustus_base": "0x59c7c832e96d2568bea6db468c1aadcbbda08a52",
+    "source": "config.ts botSwap.routerAllowlist + Odos v2 canonical"
+  }
+}

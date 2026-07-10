@@ -1,0 +1,11 @@
+node_modules
+dist
+site-dist
+.env
+.env.local
+web/.env
+*.tsbuildinfo
+.DS_Store
+.cursor/
+contracts-robinhood/
+contracts-clanker/

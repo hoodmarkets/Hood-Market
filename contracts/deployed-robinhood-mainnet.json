@@ -1,0 +1,21 @@
+{
+  "chainId": 4663,
+  "factory": "0xdebc9bc5c3ca697493a01e8ac503b590d209d8bd",
+  "feeLocker": "0xd588f6f8819fc0b34ff72300bb87b8c69c4cd454",
+  "hookDynamic": "0x5de599d4363bb9308434351600c34c96d46868cc",
+  "hookStatic": "0xcd9dd3fa11c53cf6ae3d4e4d3fdf7c1f790468cc",
+  "lpLocker": "0x34861965c8efc302e794c8593404cf17c6e65ff0",
+  "univ4EthDevBuy": "0x39ddf0339f9dccef59457a3579de1789c38d5a40",
+  "mevModule": "0xcbbc3534a892a365c57023c34349300d360f6a1b",
+  "swapHelper": "0x6373285f77ad0a3f5a441439b3d23d16b79aa585",
+  "hoodmarketsV3": {
+    "version": "0.11.0",
+    "factory": "0x9BDdC8ddf28f5629C989A36Eb5bb6C73cBA60Df5",
+    "vault": "0x856c6997A86752fB3E6A494AB93107B7A371A57f",
+    "lpLocker": "0x23a1c52F4E93B0283d12CC16c29Df119803E8745",
+    "fractionDeployer": "0x40A19d561b3200A2C9E1014248FcEB724c450692",
+    "platformFeeRecipient": "0xbfD1be7a12A9FeF04D281C2D8D0D9EE15b576d98",
+    "owner": "0xFA45A3b8d1662E3432D1B5bE3F37e4923D1b796C",
+    "previousFactory": "0xf65536Eb3354Ad7e77E1b0d0F7bEBFa1C88885C9"
+  }
+}

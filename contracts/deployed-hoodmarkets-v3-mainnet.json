@@ -1,0 +1,15 @@
+{
+  "chainId": 4663,
+  "version": "0.11.0",
+  "deployedAt": "2026-07-05",
+  "deployTxFactory": "0xf291bfe09436850ea091ae8bc0f52f27edd7dd19d8d35afbde18c97c000bad8e",
+  "hoodmarketsV3": {
+    "factory": "0x9BDdC8ddf28f5629C989A36Eb5bb6C73cBA60Df5",
+    "vault": "0x856c6997A86752fB3E6A494AB93107B7A371A57f",
+    "lpLocker": "0x23a1c52F4E93B0283d12CC16c29Df119803E8745",
+    "fractionDeployer": "0x40A19d561b3200A2C9E1014248FcEB724c450692",
+    "platformFeeRecipient": "0xbfD1be7a12A9FeF04D281C2D8D0D9EE15b576d98",
+    "owner": "0xFA45A3b8d1662E3432D1B5bE3F37e4923D1b796C",
+    "previousFactory": "0xf65536Eb3354Ad7e77E1b0d0F7bEBFa1C88885C9"
+  }
+}

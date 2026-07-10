@@ -1,0 +1,10 @@
+# Railway / Nixpacks: compile TypeScript needs devDependencies (typescript, @types/*).
+# NODE_ENV=production during install skips them — force dev deps for install + build.
+[phases.install]
+cmds = ["npm ci --include=dev"]
+
+[phases.build]
+cmds = ["npm run build"]
+
+[start]
+cmd = "npm start"
