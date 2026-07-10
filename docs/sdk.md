@@ -6,11 +6,11 @@
 
 | Resource | Link |
 |----------|------|
-| **Monorepo** | [github.com/anondevv69/hoodmarkets](https://github.com/anondevv69/hoodmarkets) |
-| **TypeScript SDK** | [github.com/anondevv69/hoodmarkets-sdk](https://github.com/anondevv69/hoodmarkets-sdk) |
+| **Contracts / API / docs** | [github.com/hoodmarkets/Hood-Market](https://github.com/hoodmarkets/Hood-Market) |
+| **SDK guide** | [docs/sdk.md](https://github.com/hoodmarkets/Hood-Market/blob/main/docs/sdk.md) |
 | **Agent API** | [hood.markets/agent.md](https://hood.markets/agent.md) |
-| **Bankr skill** | [skills/hoodmarkets](https://github.com/anondevv69/hoodmarkets/tree/main/skills/hoodmarkets) |
-| **V3 contract docs** | [docs/HOODMARKETS_V3.md](https://github.com/anondevv69/hoodmarkets/blob/main/docs/HOODMARKETS_V3.md) |
+| **Bankr skill** | [hoodmarkets/Hood-Market-Skill](https://github.com/hoodmarkets/Hood-Market-Skill) |
+| **V3 contract docs** | [docs/HOODMARKETS_V3.md](https://github.com/hoodmarkets/Hood-Market/blob/main/docs/HOODMARKETS_V3.md) |
 
 ---
 
@@ -102,7 +102,7 @@ See [agent.md](https://hood.markets/agent.md) and Bankr skill `references/AGENT-
 
 ## Contracts (Robinhood mainnet, v0.11.0)
 
-Source of truth: [`contracts/deployed-hoodmarkets-v3-mainnet.json`](https://github.com/anondevv69/hoodmarkets/blob/main/contracts/deployed-hoodmarkets-v3-mainnet.json)
+Source of truth: [`contracts/deployed-hoodmarkets-v3-mainnet.json`](https://github.com/hoodmarkets/Hood-Market/blob/main/contracts/deployed-hoodmarkets-v3-mainnet.json)
 
 | Contract | Address |
 |----------|---------|
@@ -117,58 +117,32 @@ Source of truth: [`contracts/deployed-hoodmarkets-v3-mainnet.json`](https://gith
 | Uniswap V3 factory | `0x1f7d7550B1b028f7571E69A784071F0205FD2EfA` |
 | Uniswap V3 position manager | `0x73991a25C818Bf1f1128dEAaB1492D45638DE0D3` |
 
-**Pro launches (V4):** see [`contracts/deployed-robinhood-mainnet.json`](https://github.com/anondevv69/hoodmarkets/blob/main/contracts/deployed-robinhood-mainnet.json)
+**Pro launches (V4):** see [`contracts/deployed-robinhood-mainnet.json`](https://github.com/hoodmarkets/Hood-Market/blob/main/contracts/deployed-robinhood-mainnet.json)
 
-**Legacy V3 factories** (existing tokens keep their bytecode): v0.10 `0xf655…85C9`, v0.9 `0x3a94…76c8`, v0.8 `0xC2A6…00e8` — full list in [`skills/hoodmarkets/known-contracts.json`](https://github.com/anondevv69/hoodmarkets/blob/main/skills/hoodmarkets/known-contracts.json)
+**Legacy V3 factories** (existing tokens keep their bytecode): v0.10 `0xf655…85C9`, v0.9 `0x3a94…76c8`, v0.8 `0xC2A6…00e8` — full list in [`known-contracts.json`](https://github.com/hoodmarkets/Hood-Market-Skill/blob/main/known-contracts.json)
 
 Explorer: [robinhoodchain.blockscout.com](https://robinhoodchain.blockscout.com)
 
 ---
 
-## TypeScript SDK
+## Integrate (API + contracts)
+
+Public source: [github.com/hoodmarkets/Hood-Market](https://github.com/hoodmarkets/Hood-Market)
+
+### Agent / HTTP deploy
 
 ```bash
-npm install github:anondevv69/hoodmarkets-sdk viem
+curl -X POST https://api.hood.markets/api/deploy \
+  -H "Content-Type: application/json" \
+  -H "X-Agent-Captcha-JWT: …" \
+  -d '{"name":"My Token","symbol":"MTK","image":"ipfs://…","feeRecipient":"0x…"}'
 ```
 
-```ts
-import { HoodMarkets, robinhood, ROBINHOOD_RPC_DEFAULT } from 'hoodmarkets-sdk';
-import { createPublicClient, createWalletClient, http } from 'viem';
+### Direct on-chain
 
-const publicClient = createPublicClient({
-  chain: robinhood,
-  transport: http(ROBINHOOD_RPC_DEFAULT),
-});
-const wallet = createWalletClient({
-  account,
-  chain: robinhood,
-  transport: http(ROBINHOOD_RPC_DEFAULT),
-});
+Call `HoodMarketsV3.deployToken` on the factory above. Foundry source: [`contracts/src/v31/`](https://github.com/hoodmarkets/Hood-Market/tree/main/contracts/src/v31)
 
-const hm = new HoodMarkets({ wallet, publicClient });
-
-// Deploy
-const result = await hm.deployToken({
-  name: 'My Token',
-  symbol: 'MTK',
-  image: 'ipfs://…',
-  feeRecipient: account.address,
-  devBuyEth: '0.001',
-});
-console.log(result.tokenAddress, result.uniswapSwapUrl);
-
-// Trade link for users
-console.log(hm.uniswapSwapUrl(result.tokenAddress));
-```
-
-### CLI
-
-```bash
-npx github:anondevv69/hoodmarkets-sdk deploy --name "My Token" --symbol "MTK" --image "ipfs://…"
-npx github:anondevv69/hoodmarkets-sdk claim --token 0x…
-```
-
-Full SDK docs: [github.com/anondevv69/hoodmarkets-sdk](https://github.com/anondevv69/hoodmarkets-sdk)
+Full guide: [docs/sdk.md](https://github.com/hoodmarkets/Hood-Market/blob/main/docs/sdk.md) · live copy: [hood.markets/sdk.md](https://hood.markets/sdk.md)
 
 ---
 
@@ -195,9 +169,9 @@ Locker sends **5% WETH → platform**, **95% → fraction contract**, then pro-r
 
 ## Integration paths
 
-### 1. SDK / direct on-chain
+### 1. Direct on-chain / viem
 
-Point at HoodMarketsV3 factory above. Foundry source: [`contracts/src/v31/`](https://github.com/anondevv69/hoodmarkets/tree/main/contracts/src/v31)
+Point at HoodMarketsV3 factory above. Foundry source: [`contracts/src/v31/`](https://github.com/hoodmarkets/Hood-Market/tree/main/contracts/src/v31)
 
 ### 2. hood.markets API (catalog + gasless deploy/claim)
 
@@ -209,9 +183,9 @@ Point at HoodMarketsV3 factory above. Foundry source: [`contracts/src/v31/`](htt
 
 | Path | Purpose |
 |------|---------|
-| [`contracts/`](https://github.com/anondevv69/hoodmarkets/tree/main/contracts) | Foundry — deploy your own factory |
-| [`api/`](https://github.com/anondevv69/hoodmarkets/tree/main/api) | Express launcher API |
-| [`web/`](https://github.com/anondevv69/hoodmarkets/tree/main/web) | Reference frontend |
+| [`contracts/`](https://github.com/hoodmarkets/Hood-Market/tree/main/contracts) | Foundry — deploy your own factory |
+| [`api/`](https://github.com/hoodmarkets/Hood-Market/tree/main/api) | Express launcher API |
+| [`docs/`](https://github.com/hoodmarkets/Hood-Market/tree/main/docs) | SDK, agent, and deploy docs |
 
 Deploy V3: `./scripts/deploy-hoodmarkets-v3.sh` from `contracts/`
 
@@ -225,12 +199,12 @@ cp .env.robinhood.example .env.robinhood   # DEPLOYER_PRIVATE_KEY=0x…
 ./scripts/deploy-hoodmarkets-v3.sh
 ```
 
-Update Railway `HOODMARKETS_V3_*` env vars — see [`api/RAILWAY_ENV_CHECKLIST.md`](https://github.com/anondevv69/hoodmarkets/blob/main/api/RAILWAY_ENV_CHECKLIST.md)
+Update Railway `HOODMARKETS_V3_*` env vars — see [`api/RAILWAY_ENV_CHECKLIST.md`](https://github.com/hoodmarkets/Hood-Market/blob/main/api/RAILWAY_ENV_CHECKLIST.md)
 
 ---
 
 ## Support
 
-- SDK: [github.com/anondevv69/hoodmarkets-sdk/issues](https://github.com/anondevv69/hoodmarkets-sdk/issues)
-- Contracts / API: [github.com/anondevv69/hoodmarkets](https://github.com/anondevv69/hoodmarkets)
-- Agents: [agent.md](https://hood.markets/agent.md) · Bankr skill v17
+- Contracts / API / docs: [github.com/hoodmarkets/Hood-Market](https://github.com/hoodmarkets/Hood-Market)
+- Bankr skill: [github.com/hoodmarkets/Hood-Market-Skill](https://github.com/hoodmarkets/Hood-Market-Skill)
+- Agents: [agent.md](https://hood.markets/agent.md)

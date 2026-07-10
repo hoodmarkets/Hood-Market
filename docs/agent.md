@@ -4,7 +4,7 @@
 
 > Robinhood Chain (4663) · API: `https://api.hood.markets` · Web: `https://hood.markets`
 
-Bankr: install skill from [anondevv69/hoodmarkets/skills/hoodmarkets](https://github.com/anondevv69/hoodmarkets/tree/main/skills/hoodmarkets) (v20) or [BankrBot/skills](https://github.com/BankrBot/skills).
+Bankr: install skill from [hoodmarkets/Hood-Market-Skill](https://github.com/hoodmarkets/Hood-Market-Skill) or [BankrBot/skills](https://github.com/BankrBot/skills).
 
 ---
 
@@ -29,7 +29,7 @@ No fee on sends, airdrops, or other share moves (v0.11 factory).
 | WETH | `0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73` |
 | Uniswap V3 SwapRouter02 | `0xCaf681a66D020601342297493863E78C959E5cb2` |
 
-Pinned JSON: [`skills/hoodmarkets/known-contracts.json`](https://github.com/anondevv69/hoodmarkets/blob/main/skills/hoodmarkets/known-contracts.json)
+Pinned JSON: [`known-contracts.json`](https://github.com/hoodmarkets/Hood-Market-Skill/blob/main/known-contracts.json)
 
 **Legacy V3 factories** (existing tokens keep bytecode): v0.10 `0xf655…85C9`, v0.9 `0x3a94…76c8`, v0.8 `0xC2A6…00e8` — full list in `known-contracts.json`.
 
